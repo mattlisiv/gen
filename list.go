@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"text/template"
 
-	"github.com/clipperhouse/typewriter"
+	"github.com/mattlisiv/typewriter"
 )
 
 func list(c config) error {

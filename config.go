@@ -4,13 +4,14 @@ import (
 	"io"
 	"os"
 
-	"github.com/clipperhouse/typewriter"
+	"github.com/mattlisiv/typewriter"
 )
 
 type config struct {
 	out        io.Writer
 	customName string
 	*typewriter.Config
+	outputDirectoryPath *string
 }
 
 var defaultConfig = config{

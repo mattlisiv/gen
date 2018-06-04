@@ -5,16 +5,21 @@ import (
 	"os"
 	"text/template"
 
-	"github.com/clipperhouse/typewriter"
+	"github.com/mattlisiv/typewriter"
 )
 
-func run(c config) error {
+func run(c config, args ...string) error {
 	imports := typewriter.NewImportSpecSet(
 		typewriter.ImportSpec{Path: "fmt"},
 		typewriter.ImportSpec{Path: "os"},
 		typewriter.ImportSpec{Path: "regexp"},
 		typewriter.ImportSpec{Path: "github.com/clipperhouse/typewriter"},
 	)
+
+	// Output Directory Path
+	if len(args) > 0{
+		c.outputDirectoryPath = &args[0]
+	}
 
 	return execute(runStandard, c, imports, runTmpl)
 }

@@ -37,7 +37,7 @@ func runMain(args []string) error {
 
 	if len(cmd) == 0 {
 		// simply typed 'gen'; run is the default command
-		return run(c)
+		return run(c, tail...)
 	}
 
 	switch cmd {
@@ -49,6 +49,8 @@ func runMain(args []string) error {
 		return list(c)
 	case "watch":
 		return watch(c)
+	case "run":
+		return run(c, tail...)
 	default:
 		return help(c)
 	}
@@ -62,6 +64,7 @@ var cmds = map[string]struct{}{
 	"help":  s,
 	"list":  s,
 	"watch": s,
+	"run":   s,
 }
 
 func parseArgs(args []string) (cmd string, force bool, tail []string, err error) {
@@ -82,7 +85,7 @@ func parseArgs(args []string) (cmd string, force bool, tail []string, err error)
 	}
 
 	// tail is only valid on add & get; otherwise an error
-	if len(tail) > 0 && cmd != "add" && cmd != "get" {
+	if len(tail) > 0 && cmd != "add" && cmd != "get" && cmd != "run" {
 		err = fmt.Errorf("unknown command(s) %v", tail)
 		tail = []string{}
 	}

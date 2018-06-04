@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"text/template"
 
-	"github.com/clipperhouse/typewriter"
+	"github.com/mattlisiv/typewriter"
 )
 
 // execute runs a gen command by first determining whether a custom imports file (typically _gen.go) exists
