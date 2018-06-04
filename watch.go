@@ -8,7 +8,7 @@ import (
 	"github.com/clipperhouse/fsnotify"
 )
 
-func watch(c config) error {
+func watch(c CommandConfig) error {
 	watcher, err := fsnotify.NewWatcher()
 
 	if err != nil {

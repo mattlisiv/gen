@@ -11,7 +11,7 @@ import (
 )
 
 // get runs `go get` for required typewriters, either default or specified in _gen.go
-func get(c config, args ...string) error {
+func get(c CommandConfig, args ...string) error {
 	imports, err := getTypewriterImports(c)
 
 	if err != nil {
@@ -39,7 +39,7 @@ func get(c config, args ...string) error {
 	return nil
 }
 
-func getTypewriterImports(c config) (typewriter.ImportSpecSet, error) {
+func getTypewriterImports(c CommandConfig) (typewriter.ImportSpecSet, error) {
 	imports := typewriter.NewImportSpecSet()
 
 	// check for existence of custom file

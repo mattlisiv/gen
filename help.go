@@ -7,7 +7,7 @@ import (
 	"text/template"
 )
 
-func help(c config) error {
+func help(c CommandConfig) error {
 	cmd := filepath.Base(os.Args[0])
 	spacer := strings.Repeat(" ", len(cmd))
 

@@ -7,17 +7,43 @@ import (
 	"github.com/mattlisiv/typewriter"
 )
 
-type config struct {
+type CommandConfig struct {
 	out                 io.Writer
 	customName          string
+	Directive           string
 	OutputDirectoryPath *string
 	*typewriter.Config
 }
 
-var defaultConfig = config{
+var defaultConfig = CommandConfig{
 	out:        os.Stdout,
+	Directive:  "+gen",
 	customName: "_gen.go",
 	Config:     &typewriter.Config{},
+}
+
+func NewConfig(args []string) CommandConfig {
+	if len(args) >= 2 {
+		return CommandConfig{
+			out:                 os.Stdout,
+			Directive:           args[0],
+			customName:          "_gen.go",
+			Config:              &typewriter.Config{},
+			OutputDirectoryPath: &args[1],
+		}
+	}
+
+	if len(args) >= 1 {
+		out := "./"
+		return CommandConfig{
+			out:                 os.Stdout,
+			Directive:           args[0],
+			customName:          "_gen.go",
+			Config:              &typewriter.Config{},
+			OutputDirectoryPath: &out,
+		}
+	}
+	return defaultConfig
 }
 
 // keep in sync with imports.go

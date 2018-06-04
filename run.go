@@ -8,7 +8,7 @@ import (
 	"github.com/mattlisiv/typewriter"
 )
 
-func run(c config, args ...string) error {
+func run(c CommandConfig, args ...string) error {
 	imports := typewriter.NewImportSpecSet(
 		typewriter.ImportSpec{Path: "fmt"},
 		typewriter.ImportSpec{Path: "os"},
@@ -16,19 +16,11 @@ func run(c config, args ...string) error {
 		typewriter.ImportSpec{Path: "github.com/mattlisiv/typewriter"},
 	)
 
-	// Output Directory Path
-	if len(args) > 0 {
-		c.OutputDirectoryPath = &args[0]
-	}else{
-		output := "./"
-		c.OutputDirectoryPath = &output
-	}
-
 	return execute(runStandard, c, imports, runTmpl)
 }
 
-func runStandard(c config) (err error) {
-	app, err := c.Config.NewApp("+gen")
+func runStandard(c CommandConfig) (err error) {
+	app, err := c.Config.NewApp(c.Directive)
 	if err != nil {
 		return err
 	}
@@ -77,8 +69,8 @@ func main() {
 }
 
 func run() error {
-	config := {{ printf "%#v" .Config }}
-	app, err := config.NewApp("+gen")
+	CommandConfig := {{ printf "%#v" .Config }}
+	app, err := CommandConfig.NewApp("{{.Directive}}")
 
 	if err != nil {
 		return err

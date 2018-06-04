@@ -25,9 +25,10 @@ func main() {
 var exitStatusMsg = regexp.MustCompile("^exit status \\d+$")
 
 func runMain(args []string) error {
-	c := defaultConfig
 
 	cmd, force, tail, err := parseArgs(args)
+
+	c := NewConfig(tail)
 
 	if err != nil {
 		return err

@@ -7,14 +7,14 @@ import (
 	"github.com/mattlisiv/typewriter"
 )
 
-func list(c config) error {
+func list(c CommandConfig) error {
 	imports := typewriter.NewImportSpecSet(
 		typewriter.ImportSpec{Path: "fmt"},
 		typewriter.ImportSpec{Path: "os"},
 		typewriter.ImportSpec{Path: "github.com/clipperhouse/typewriter"},
 	)
 
-	listFunc := func(c config) error {
+	listFunc := func(c CommandConfig) error {
 		app, err := typewriter.NewApp("+gen")
 
 		if err != nil {

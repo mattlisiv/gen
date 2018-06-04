@@ -9,7 +9,7 @@ import (
 )
 
 // add adds a new typewriter import to the current package, by creating (or appending) a _gen.go file.
-func add(c config, args ...string) error {
+func add(c CommandConfig, args ...string) error {
 	if len(args) == 0 {
 		return fmt.Errorf("please specify the import path of the typewriter you wish to add")
 	}
@@ -42,7 +42,7 @@ func add(c config, args ...string) error {
 	return nil
 }
 
-func createCustomFile(c config, imports typewriter.ImportSpecSet) error {
+func createCustomFile(c CommandConfig, imports typewriter.ImportSpecSet) error {
 	w, err := os.Create(c.customName)
 
 	if err != nil {
