@@ -8,10 +8,10 @@ import (
 )
 
 type config struct {
-	out        io.Writer
-	customName string
+	out                 io.Writer
+	customName          string
+	OutputDirectoryPath *string
 	*typewriter.Config
-	outputDirectoryPath *string
 }
 
 var defaultConfig = config{

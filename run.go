@@ -13,12 +13,15 @@ func run(c config, args ...string) error {
 		typewriter.ImportSpec{Path: "fmt"},
 		typewriter.ImportSpec{Path: "os"},
 		typewriter.ImportSpec{Path: "regexp"},
-		typewriter.ImportSpec{Path: "github.com/clipperhouse/typewriter"},
+		typewriter.ImportSpec{Path: "github.com/mattlisiv/typewriter"},
 	)
 
 	// Output Directory Path
-	if len(args) > 0{
-		c.outputDirectoryPath = &args[0]
+	if len(args) > 0 {
+		c.OutputDirectoryPath = &args[0]
+	}else{
+		output := "./"
+		c.OutputDirectoryPath = &output
 	}
 
 	return execute(runStandard, c, imports, runTmpl)
@@ -26,11 +29,9 @@ func run(c config, args ...string) error {
 
 func runStandard(c config) (err error) {
 	app, err := c.Config.NewApp("+gen")
-
 	if err != nil {
 		return err
 	}
-
 	if len(app.Packages) == 0 {
 		return fmt.Errorf("No packages were found. See http://clipperhouse.github.io/gen to get started, or type %s help.", os.Args[0])
 	}
@@ -49,7 +50,7 @@ func runStandard(c config) (err error) {
 		return fmt.Errorf("No typewriters were imported. See http://clipperhouse.github.io/gen to get started, or type %s help.", os.Args[0])
 	}
 
-	if _, err := app.WriteAll(); err != nil {
+	if _, err := app.WriteAll(c.OutputDirectoryPath); err != nil {
 		return err
 	}
 
@@ -101,7 +102,9 @@ func run() error {
 		return fmt.Errorf("No typewriters were imported. See http://clipperhouse.github.io/gen to get started, or type %s help.", os.Args[0])
 	}
 
-	if _, err := app.WriteAll(); err != nil {
+	fp := "{{.OutputDirectoryPath}}"
+
+	if _, err := app.WriteAll(&fp); err != nil {
 		return err
 	}
 
