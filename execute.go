@@ -7,7 +7,6 @@ import (
 	"os/exec"
 	"path/filepath"
 	"text/template"
-
 	"github.com/mattlisiv/typewriter"
 )
 

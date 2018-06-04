@@ -35,7 +35,7 @@ func runStandard(c CommandConfig) (err error) {
 	}
 
 	if !found {
-		return fmt.Errorf("No types marked with +gen were found. See http://clipperhouse.github.io/gen to get started, or type %s help.", os.Args[0])
+		return fmt.Errorf("No types marked with %s were found. See http://clipperhouse.github.io/gen to get started, or type %s help.", c.Directive, os.Args[0])
 	}
 
 	if len(app.TypeWriters) == 0 {
@@ -87,7 +87,7 @@ func run() error {
 	}
 
 	if !found {
-		return fmt.Errorf("No types marked with +gen were found. See http://clipperhouse.github.io/gen to get started, or type %s help.", os.Args[0])
+		return fmt.Errorf("No types marked with {{.Directive}} were found. See http://clipperhouse.github.io/gen to get started, or type %s help.", os.Args[0])
 	}
 
 	if len(app.TypeWriters) == 0 {
