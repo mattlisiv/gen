@@ -3,15 +3,14 @@ package main
 import (
 	"fmt"
 	"text/template"
-
-	"github.com/mattlisiv/typewriter"
+	"typewriter"
 )
 
 func list(c CommandConfig) error {
 	imports := typewriter.NewImportSpecSet(
 		typewriter.ImportSpec{Path: "fmt"},
 		typewriter.ImportSpec{Path: "os"},
-		typewriter.ImportSpec{Path: "github.com/clipperhouse/typewriter"},
+		typewriter.ImportSpec{Path: "typewriter"},
 	)
 
 	listFunc := func(c CommandConfig) error {

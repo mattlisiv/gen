@@ -3,8 +3,7 @@ package main
 import (
 	"os"
 	"testing"
-
-	"github.com/clipperhouse/typewriter"
+	"typewriter"
 )
 
 func TestAdd(t *testing.T) {

@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-
-	"github.com/mattlisiv/typewriter"
+	"typewriter"
 )
 
 // add adds a new typewriter import to the current package, by creating (or appending) a _gen.go file.

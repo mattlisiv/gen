@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"text/template"
-	"github.com/mattlisiv/typewriter"
+	"typewriter"
 )
 
 // execute runs a gen command by first determining whether a custom imports file (typically _gen.go) exists

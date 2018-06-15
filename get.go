@@ -6,8 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
-
-	"github.com/mattlisiv/typewriter"
+	"typewriter"
 )
 
 // get runs `go get` for required typewriters, either default or specified in _gen.go
