@@ -1,0 +1,22 @@
+hash: baa4fbbed32a6bae431ec843862c25f338bbae3ead24a1c5f62855a8874e5d10
+updated: 2018-06-15T10:32:14.659727-04:00
+imports:
+- name: github.com/clipperhouse/fsnotify
+  version: f582d920d11386e8ae15227bb5933a8f9b4c3dec
+- name: github.com/clipperhouse/slice
+  version: 3ae82e00044e045370183e264317ec785b8f0da3
+- name: github.com/clipperhouse/stringer
+  version: 0659715a8d9bee2e7e82afb1106acfc4db4f426c
+- name: github.com/clipperhouse/typewriter
+  version: 86cb4c0175ccc79688d52533286683400e165114
+- name: golang.org/x/tools
+  version: c6269430a55499efa2e293ae66926175dc3af30e
+  subpackages:
+  - go/ast/astutil
+  - imports
+  - internal/fastwalk
+- name: typewriter
+  version: 9824ce661e4d859a41a4e1378c3eb5924d56549f
+  repo: ssh://git@gitlab.dev.mylumper.com:2022/vendor/typewriter.git
+  vcs: git
+testImports: []
