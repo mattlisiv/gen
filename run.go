@@ -20,7 +20,7 @@ func run(c CommandConfig, args ...string) error {
 }
 
 func runStandard(c CommandConfig) (err error) {
-	app, err := c.Config.NewApp(c.Directive)
+	app, err := c.Config.NewApp(c.Directive, c.InputDirectoryPath)
 	if err != nil {
 		return err
 	}
@@ -42,7 +42,7 @@ func runStandard(c CommandConfig) (err error) {
 		return fmt.Errorf("No typewriters were imported. See http://clipperhouse.github.io/gen to get started, or type %s help.", os.Args[0])
 	}
 
-	if _, err := app.WriteAll(c.OutputDirectoryPath); err != nil {
+	if _, err := app.WriteAll(&c.OutputDirectoryPath); err != nil {
 		return err
 	}
 
@@ -70,7 +70,7 @@ func main() {
 
 func run() error {
 	CommandConfig := {{ printf "%#v" .Config }}
-	app, err := CommandConfig.NewApp("{{.Directive}}")
+	app, err := CommandConfig.NewApp("{{.Directive}}","{{.InputDirectoryPath}}")
 
 	if err != nil {
 		return err

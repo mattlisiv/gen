@@ -11,7 +11,8 @@ type CommandConfig struct {
 	out                 io.Writer
 	customName          string
 	Directive           string
-	OutputDirectoryPath *string
+	OutputDirectoryPath string
+	InputDirectoryPath  string
 	*typewriter.Config
 }
 
@@ -23,13 +24,25 @@ var defaultConfig = CommandConfig{
 }
 
 func NewConfig(args []string) CommandConfig {
+	if len(args) >= 3 {
+		return CommandConfig{
+			out:                 os.Stdout,
+			Directive:           args[0],
+			customName:          "_gen.go",
+			Config:              &typewriter.Config{},
+			InputDirectoryPath:  args[1],
+			OutputDirectoryPath: args[2],
+		}
+	}
+
 	if len(args) >= 2 {
 		return CommandConfig{
 			out:                 os.Stdout,
 			Directive:           args[0],
 			customName:          "_gen.go",
 			Config:              &typewriter.Config{},
-			OutputDirectoryPath: &args[1],
+			OutputDirectoryPath: "./",
+			InputDirectoryPath:  args[1],
 		}
 	}
 
@@ -40,7 +53,8 @@ func NewConfig(args []string) CommandConfig {
 			Directive:           args[0],
 			customName:          "_gen.go",
 			Config:              &typewriter.Config{},
-			OutputDirectoryPath: &out,
+			InputDirectoryPath:  out,
+			OutputDirectoryPath: out,
 		}
 	}
 	return defaultConfig

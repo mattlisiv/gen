@@ -15,7 +15,7 @@ func list(c CommandConfig) error {
 	)
 
 	listFunc := func(c CommandConfig) error {
-		app, err := typewriter.NewApp("+gen")
+		app, err := typewriter.NewApp("+gen", c.InputDirectoryPath)
 
 		if err != nil {
 			return err
